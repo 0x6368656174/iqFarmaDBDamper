@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QSqlDatabase>
+#include <QTimer>
+#include <QDate>
 
 namespace Ui {
 class IqMainWindow;
@@ -21,14 +23,21 @@ public:
 public slots:
     void checkTime();
     void backup();
+    void startStop();
+    void saveSettings() const;
+    void showAbout();
+    void showAboutQt();
 
 private:
     Ui::IqMainWindow *ui;
     QSqlDatabase _db;
+    QTimer *_backupTimer;
+    QDate _lastBackupDate;
 
     static IqMainWindow *_instanse;
 
-    QString dumpSqlTable(const QString &tableName, QSqlDatabase db = QSqlDatabase());
+    void loadSettings();
+    QString dumpSqlTable(const QString &tableName, const QStringList &columns = QStringList(), QSqlDatabase db = QSqlDatabase());
 };
 
 #endif // IQMAINWINDOW_H

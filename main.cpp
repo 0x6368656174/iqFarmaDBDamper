@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
 {
     qInstallMessageHandler(myMessageOutput);
 
+    QApplication::setOrganizationName("itQuasar");
+    QApplication::setApplicationName("iqFarmaDBDamper");
     QApplication a(argc, argv);
     IqMainWindow w;
     w.show();
